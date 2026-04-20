@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-devanagari: "Noto Sans Devanagari", sans-serif;
+}
+
+/* Devanagari text rendering */
+.devanagari {
+  font-family: var(--font-devanagari);
+  line-height: 1.8;
+}
+
+/* Chat bubble animations */
+@keyframes slideUp {
+  from { transform: translateY(8px); opacity: 0; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+
+@keyframes typingDot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1.0); opacity: 1;   }
+}
+
+.animate-slide-up { animation: slideUp 0.35s ease-out; }
+
+.typing-dot {
+  animation: typingDot 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0.32s; }
+
+/* Scrollbar styling */
+.scrollbar-thin::-webkit-scrollbar { width: 4px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: theme('colors.ink.200');
+  border-radius: 2px;
+}
+
+/* FD Card hover */
+.fd-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.fd-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(15, 10, 0, 0.12);
+}
+
+/* Voice button pulse */
+@keyframes voicePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(249, 115, 22, 0); }
+}
+.voice-active { animation: voicePulse 1.2s ease-in-out infinite; }
+
+/* Progress stepper */
+.step-active { background: theme('colors.saffron.500'); color: white; }
+.step-done   { background: theme('colors.ink.800'); color: white; }
+.step-idle   { background: theme('colors.ink.100'); color: theme('colors.ink.400'); }
